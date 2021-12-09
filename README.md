@@ -1,2 +1,2 @@
-# schdler-back
+# Schdler Backend
 NodeJS API
