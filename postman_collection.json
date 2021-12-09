@@ -1,0 +1,1050 @@
+{
+	"info": {
+		"_postman_id": "d553d49b-ee89-435f-8901-f2d112228094",
+		"name": "Schdler",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Index",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3333/users",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"User 1\",\n    \"login\": \"user1\",\n    \"pass\": \"12345\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3333/users/create",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"users",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{user_id}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"User 1\",\n    \"login\": \"user1\",\n    \"pass\": \"123456\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3333/users/update",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"users",
+								"update"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Projects",
+			"item": [
+				{
+					"name": "Index",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{user_id}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:3333/projects",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"projects"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{user_id}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Projeto Base Delete\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3333/projects/create",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"projects",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{user_id}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Projeto Base Editado 2\",\n    \"credits\": 20,\n    \"slots\": 10\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3333/projects/61b0f1e16148036e23665aa8/update",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"projects",
+								"61b0f1e16148036e23665aa8",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{user_id}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:3333/projects/61b0f691a59875d12f203b07/delete",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"projects",
+								"61b0f691a59875d12f203b07",
+								"delete"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Locations",
+			"item": [
+				{
+					"name": "Index",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{user_id}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:3333/locations",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"locations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{user_id}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Location Base\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3333/locations/create",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"locations",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{user_id}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Location Editada\",\n    \"capacity\": 15\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3333/locations/{{location_id}}/update",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"locations",
+								"{{location_id}}",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{user_id}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:3333/locations/61b1e692c57e9f59bb558a6b/delete",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"locations",
+								"61b1e692c57e9f59bb558a6b",
+								"delete"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Modules",
+			"item": [
+				{
+					"name": "Index",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{user_id}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:3333/modules",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"modules"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{user_id}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Disciplina Base\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3333/modules/create",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"modules",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{user_id}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Class Base Editada\",\n    \"credits\": 4\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3333/modules/61b1eb6f49f49eba189b75c8/update",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"modules",
+								"61b1eb6f49f49eba189b75c8",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{user_id}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:3333/modules/61b1eb7449f49eba189b75cb/delete",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"modules",
+								"61b1eb7449f49eba189b75cb",
+								"delete"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Professor",
+			"item": [
+				{
+					"name": "Index",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{user_id}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:3333/professors",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"professors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{user_id}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Professor Base\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3333/professors/create",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"professors",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{user_id}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Professor Base Editado\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3333/professors/61b221204ce610262ea5dcf0/update",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"professors",
+								"61b221204ce610262ea5dcf0",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{user_id}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:3333/professors/61b221204ce610262ea5dcf0/delete",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"professors",
+								"61b221204ce610262ea5dcf0",
+								"delete"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Project-Block",
+			"item": [
+				{
+					"name": "Index",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{user_id}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:3333/projects/{{project_id}}/blocks",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"projects",
+								"{{project_id}}",
+								"blocks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{user_id}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"professor\": \"{{professor_id}}\",\n    \"module\": \"{{module_id}}\",\n    \"location\": \"{{location_id}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3333/projects/{{project_id}}/blocks/create",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"projects",
+								"{{project_id}}",
+								"blocks",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{user_id}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"professor\": \"{{professor_id}}\",\n    \"module\": \"{{module_id}}\",\n    \"location\": \"61b22f870edda22fa268999b\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3333/projects/{{project_id}}/blocks/{{block_id}}/update",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"projects",
+								"{{project_id}}",
+								"blocks",
+								"{{block_id}}",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{user_id}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Projeto Base Editado 2\",\n    \"credits\": 20,\n    \"slots\": 10\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3333/projects/{{project_id}}/blocks/:block_id/delete",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"projects",
+								"{{project_id}}",
+								"blocks",
+								":block_id",
+								"delete"
+							],
+							"variable": [
+								{
+									"key": "block_id",
+									"value": "61b231da97b88952b96fea8e"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Project-Board",
+			"item": [
+				{
+					"name": "Index",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{user_id}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:3333/projects/{{project_id}}/boards",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"projects",
+								"{{project_id}}",
+								"boards"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{user_id}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Board Base\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3333/projects/{{project_id}}/boards/create",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"projects",
+								"{{project_id}}",
+								"boards",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{user_id}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Board editado\",\n    \"period\": \"M\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3333/projects/{{project_id}}/boards/{{board_id}}/update",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"projects",
+								"{{project_id}}",
+								"boards",
+								"{{board_id}}",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{user_id}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:3333/projects/{{project_id}}/boards/:board_id/delete",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"projects",
+								"{{project_id}}",
+								"boards",
+								":board_id",
+								"delete"
+							],
+							"variable": [
+								{
+									"key": "board_id",
+									"value": "61b22a592ec3151d0823b2f0"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Board-Slot",
+			"item": [
+				{
+					"name": "Index",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{user_id}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:3333/projects/{{project_id}}/boards",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"projects",
+								"{{project_id}}",
+								"boards"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{user_id}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"index\": 1,\n    \"block\": \"{{block_id}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3333/boards/:board_id/slots/create",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"boards",
+								":board_id",
+								"slots",
+								"create"
+							],
+							"variable": [
+								{
+									"key": "board_id",
+									"value": "{{board_id}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{user_id}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:3333/projects/{{project_id}}/boards/:board_id/delete",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"projects",
+								"{{project_id}}",
+								"boards",
+								":board_id",
+								"delete"
+							],
+							"variable": [
+								{
+									"key": "board_id",
+									"value": "61b22a592ec3151d0823b2f0"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Sys",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3333/sys",
+					"host": [
+						"localhost"
+					],
+					"port": "3333",
+					"path": [
+						"sys"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "user_id",
+			"value": "61b0efe7b3cda77bbb65d363"
+		},
+		{
+			"key": "project_id",
+			"value": "61b0f634a59875d12f203aff"
+		},
+		{
+			"key": "board_id",
+			"value": "61b22a09c226ac204f42ed84"
+		},
+		{
+			"key": "professor_id",
+			"value": "61b22196b300ffa695a4b7b1"
+		},
+		{
+			"key": "module_id",
+			"value": "61b1eb6f49f49eba189b75c8"
+		},
+		{
+			"key": "location_id",
+			"value": "61b1e52e0cbc0597a12dfabf"
+		},
+		{
+			"key": "block_id",
+			"value": "61b22dedd3a815227c5c3721"
+		}
+	]
+}

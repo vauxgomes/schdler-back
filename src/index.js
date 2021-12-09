@@ -36,4 +36,4 @@ app.use(routes)
 app.listen(process.env.PORT || 3333)
 
 //
-console.log(`> Server Running on PORT ${process.env.PORT || 3333}`)
+console.log(`> ${process.env.APP_NAME} server running on PORT ${process.env.PORT || 3333}`)
