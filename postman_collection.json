@@ -14,11 +14,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:3333/users",
+							"raw": "{{api}}/users",
 							"host": [
-								"localhost"
+								"{{api}}"
 							],
-							"port": "3333",
 							"path": [
 								"users"
 							]
@@ -41,11 +40,10 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:3333/users/create",
+							"raw": "{{api}}/users/create",
 							"host": [
-								"localhost"
+								"{{api}}"
 							],
-							"port": "3333",
 							"path": [
 								"users",
 								"create"
@@ -75,11 +73,10 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:3333/users/update",
+							"raw": "{{api}}/users/update",
 							"host": [
-								"localhost"
+								"{{api}}"
 							],
-							"port": "3333",
 							"path": [
 								"users",
 								"update"
@@ -105,11 +102,10 @@
 							}
 						],
 						"url": {
-							"raw": "localhost:3333/projects",
+							"raw": "{{api}}/projects",
 							"host": [
-								"localhost"
+								"{{api}}"
 							],
-							"port": "3333",
 							"path": [
 								"projects"
 							]
@@ -138,11 +134,10 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:3333/projects/create",
+							"raw": "{{api}}/projects/create",
 							"host": [
-								"localhost"
+								"{{api}}"
 							],
-							"port": "3333",
 							"path": [
 								"projects",
 								"create"
@@ -172,11 +167,10 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:3333/projects/61b0f1e16148036e23665aa8/update",
+							"raw": "{{api}}/projects/61b0f1e16148036e23665aa8/update",
 							"host": [
-								"localhost"
+								"{{api}}"
 							],
-							"port": "3333",
 							"path": [
 								"projects",
 								"61b0f1e16148036e23665aa8",
@@ -198,11 +192,10 @@
 							}
 						],
 						"url": {
-							"raw": "localhost:3333/projects/61b0f691a59875d12f203b07/delete",
+							"raw": "{{api}}/projects/61b0f691a59875d12f203b07/delete",
 							"host": [
-								"localhost"
+								"{{api}}"
 							],
-							"port": "3333",
 							"path": [
 								"projects",
 								"61b0f691a59875d12f203b07",
@@ -229,11 +222,10 @@
 							}
 						],
 						"url": {
-							"raw": "localhost:3333/locations",
+							"raw": "{{api}}/locations",
 							"host": [
-								"localhost"
+								"{{api}}"
 							],
-							"port": "3333",
 							"path": [
 								"locations"
 							]
@@ -262,11 +254,10 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:3333/locations/create",
+							"raw": "{{api}}/locations/create",
 							"host": [
-								"localhost"
+								"{{api}}"
 							],
-							"port": "3333",
 							"path": [
 								"locations",
 								"create"
@@ -296,11 +287,10 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:3333/locations/{{location_id}}/update",
+							"raw": "{{api}}/locations/{{location_id}}/update",
 							"host": [
-								"localhost"
+								"{{api}}"
 							],
-							"port": "3333",
 							"path": [
 								"locations",
 								"{{location_id}}",
@@ -322,11 +312,10 @@
 							}
 						],
 						"url": {
-							"raw": "localhost:3333/locations/61b1e692c57e9f59bb558a6b/delete",
+							"raw": "{{api}}/locations/61b1e692c57e9f59bb558a6b/delete",
 							"host": [
-								"localhost"
+								"{{api}}"
 							],
-							"port": "3333",
 							"path": [
 								"locations",
 								"61b1e692c57e9f59bb558a6b",
@@ -353,11 +342,10 @@
 							}
 						],
 						"url": {
-							"raw": "localhost:3333/modules",
+							"raw": "{{api}}/modules",
 							"host": [
-								"localhost"
+								"{{api}}"
 							],
-							"port": "3333",
 							"path": [
 								"modules"
 							]
@@ -386,11 +374,10 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:3333/modules/create",
+							"raw": "{{api}}/modules/create",
 							"host": [
-								"localhost"
+								"{{api}}"
 							],
-							"port": "3333",
 							"path": [
 								"modules",
 								"create"
@@ -420,11 +407,10 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:3333/modules/61b1eb6f49f49eba189b75c8/update",
+							"raw": "{{api}}/modules/61b1eb6f49f49eba189b75c8/update",
 							"host": [
-								"localhost"
+								"{{api}}"
 							],
-							"port": "3333",
 							"path": [
 								"modules",
 								"61b1eb6f49f49eba189b75c8",
@@ -446,11 +432,10 @@
 							}
 						],
 						"url": {
-							"raw": "localhost:3333/modules/61b1eb7449f49eba189b75cb/delete",
+							"raw": "{{api}}/modules/61b1eb7449f49eba189b75cb/delete",
 							"host": [
-								"localhost"
+								"{{api}}"
 							],
-							"port": "3333",
 							"path": [
 								"modules",
 								"61b1eb7449f49eba189b75cb",
@@ -477,11 +462,10 @@
 							}
 						],
 						"url": {
-							"raw": "localhost:3333/professors",
+							"raw": "{{api}}/professors",
 							"host": [
-								"localhost"
+								"{{api}}"
 							],
-							"port": "3333",
 							"path": [
 								"professors"
 							]
@@ -510,11 +494,10 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:3333/professors/create",
+							"raw": "{{api}}/professors/create",
 							"host": [
-								"localhost"
+								"{{api}}"
 							],
-							"port": "3333",
 							"path": [
 								"professors",
 								"create"
@@ -544,11 +527,10 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:3333/professors/61b221204ce610262ea5dcf0/update",
+							"raw": "{{api}}/professors/61b221204ce610262ea5dcf0/update",
 							"host": [
-								"localhost"
+								"{{api}}"
 							],
-							"port": "3333",
 							"path": [
 								"professors",
 								"61b221204ce610262ea5dcf0",
@@ -570,11 +552,10 @@
 							}
 						],
 						"url": {
-							"raw": "localhost:3333/professors/61b221204ce610262ea5dcf0/delete",
+							"raw": "{{api}}/professors/61b221204ce610262ea5dcf0/delete",
 							"host": [
-								"localhost"
+								"{{api}}"
 							],
-							"port": "3333",
 							"path": [
 								"professors",
 								"61b221204ce610262ea5dcf0",
@@ -601,11 +582,10 @@
 							}
 						],
 						"url": {
-							"raw": "localhost:3333/projects/{{project_id}}/blocks",
+							"raw": "{{api}}/projects/{{project_id}}/blocks",
 							"host": [
-								"localhost"
+								"{{api}}"
 							],
-							"port": "3333",
 							"path": [
 								"projects",
 								"{{project_id}}",
@@ -636,11 +616,10 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:3333/projects/{{project_id}}/blocks/create",
+							"raw": "{{api}}/projects/{{project_id}}/blocks/create",
 							"host": [
-								"localhost"
+								"{{api}}"
 							],
-							"port": "3333",
 							"path": [
 								"projects",
 								"{{project_id}}",
@@ -672,11 +651,10 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:3333/projects/{{project_id}}/blocks/{{block_id}}/update",
+							"raw": "{{api}}/projects/{{project_id}}/blocks/{{block_id}}/update",
 							"host": [
-								"localhost"
+								"{{api}}"
 							],
-							"port": "3333",
 							"path": [
 								"projects",
 								"{{project_id}}",
@@ -709,11 +687,10 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:3333/projects/{{project_id}}/blocks/:block_id/delete",
+							"raw": "{{api}}/projects/{{project_id}}/blocks/:block_id/delete",
 							"host": [
-								"localhost"
+								"{{api}}"
 							],
-							"port": "3333",
 							"path": [
 								"projects",
 								"{{project_id}}",
@@ -748,11 +725,10 @@
 							}
 						],
 						"url": {
-							"raw": "localhost:3333/projects/{{project_id}}/boards",
+							"raw": "{{api}}/projects/{{project_id}}/boards",
 							"host": [
-								"localhost"
+								"{{api}}"
 							],
-							"port": "3333",
 							"path": [
 								"projects",
 								"{{project_id}}",
@@ -783,11 +759,10 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:3333/projects/{{project_id}}/boards/create",
+							"raw": "{{api}}/projects/{{project_id}}/boards/create",
 							"host": [
-								"localhost"
+								"{{api}}"
 							],
-							"port": "3333",
 							"path": [
 								"projects",
 								"{{project_id}}",
@@ -819,11 +794,10 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:3333/projects/{{project_id}}/boards/{{board_id}}/update",
+							"raw": "{{api}}/projects/{{project_id}}/boards/{{board_id}}/update",
 							"host": [
-								"localhost"
+								"{{api}}"
 							],
-							"port": "3333",
 							"path": [
 								"projects",
 								"{{project_id}}",
@@ -847,11 +821,10 @@
 							}
 						],
 						"url": {
-							"raw": "localhost:3333/projects/{{project_id}}/boards/:board_id/delete",
+							"raw": "{{api}}/projects/{{project_id}}/boards/:board_id/delete",
 							"host": [
-								"localhost"
+								"{{api}}"
 							],
-							"port": "3333",
 							"path": [
 								"projects",
 								"{{project_id}}",
@@ -862,7 +835,7 @@
 							"variable": [
 								{
 									"key": "board_id",
-									"value": "61b22a592ec3151d0823b2f0"
+									"value": "61b26473265ce0ee1a1c0830"
 								}
 							]
 						}
@@ -886,15 +859,14 @@
 							}
 						],
 						"url": {
-							"raw": "localhost:3333/projects/{{project_id}}/boards",
+							"raw": "{{api}}/boards/{{board_id}}/slots",
 							"host": [
-								"localhost"
+								"{{api}}"
 							],
-							"port": "3333",
 							"path": [
-								"projects",
-								"{{project_id}}",
-								"boards"
+								"boards",
+								"{{board_id}}",
+								"slots"
 							]
 						}
 					},
@@ -921,11 +893,10 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:3333/boards/:board_id/slots/create",
+							"raw": "{{api}}/boards/:board_id/slots/create",
 							"host": [
-								"localhost"
+								"{{api}}"
 							],
-							"port": "3333",
 							"path": [
 								"boards",
 								":board_id",
@@ -954,22 +925,21 @@
 							}
 						],
 						"url": {
-							"raw": "localhost:3333/projects/{{project_id}}/boards/:board_id/delete",
+							"raw": "{{api}}/boards/{{board_id}}/slots/:slot_id/delete",
 							"host": [
-								"localhost"
+								"{{api}}"
 							],
-							"port": "3333",
 							"path": [
-								"projects",
-								"{{project_id}}",
 								"boards",
-								":board_id",
+								"{{board_id}}",
+								"slots",
+								":slot_id",
 								"delete"
 							],
 							"variable": [
 								{
-									"key": "board_id",
-									"value": "61b22a592ec3151d0823b2f0"
+									"key": "slot_id",
+									"value": "61b26310f51d397d74d56928"
 								}
 							]
 						}
@@ -984,11 +954,10 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:3333/sys",
+					"raw": "{{api}}/sys",
 					"host": [
 						"localhost"
 					],
-					"port": "3333",
 					"path": [
 						"sys"
 					]
@@ -1045,6 +1014,10 @@
 		{
 			"key": "block_id",
 			"value": "61b22dedd3a815227c5c3721"
+		},
+		{
+			"key": "api",
+			"value": "localhost:5000"
 		}
 	]
 }

@@ -26,5 +26,16 @@ In order to run the app one need to set the following environment variables:
 - `PORT`
 - `DB_URL`: Mongo DB URL with user, database and password
 
+```sh
+# Build
+docker build . -t <your username>/schdler-back
+
+# Detached run
+docker run -p 5000:3333 -d <your username>/schdler-back
+```
+
 ## Documentation
 > -- _Ain't nobody have time for that_.
+
+## Auxiliary links
+- [Dockerizing a Node.js web app](https://nodejs.org/en/docs/guides/nodejs-docker-webapp/)
