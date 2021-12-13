@@ -30,6 +30,11 @@ const Block = new mongoose.Schema({
         type: Schema.Types.ObjectId,
         ref: 'Location',
         required: true
+    },
+
+    color: {
+        type: String,
+        required: false
     }
 })
 
