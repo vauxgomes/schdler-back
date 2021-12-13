@@ -57,7 +57,8 @@ module.exports = {
             project: project_id,
             professor,
             module,
-            location
+            location,
+            color
         })
 
         return response.json({ _id: block._id })
@@ -83,7 +84,8 @@ module.exports = {
         const {
             professor = block.professor,
             module = block.module,
-            location = block.location
+            location = block.location,
+            color = block.color
         } = request.body
 
         try {
