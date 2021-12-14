@@ -8,6 +8,12 @@ const Slot = new mongoose.Schema({
         required: true
     },
 
+    project: {
+        type: Schema.Types.ObjectId,
+        ref: 'Project',
+        required: true
+    },
+
     board: {
         type: Schema.Types.ObjectId,
         ref: 'Board',

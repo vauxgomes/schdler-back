@@ -59,9 +59,6 @@ module.exports = {
             location
         })
 
-        project.blocks.push(block)
-        await project.save()
-
         return response.json({ _id: block._id })
     },
 
@@ -96,8 +93,6 @@ module.exports = {
                 error: 'Not Allowed'
             })
         }
-
-        return response.json({ _id: block._id })
     },
 
     // DELETE
@@ -122,8 +117,6 @@ module.exports = {
             user: user_id
         })
 
-        project.blocks.splice(project.blocks.indexOf(_id), 1)
-        
         await project.save()
         await Block.deleteOne({ _id })
 

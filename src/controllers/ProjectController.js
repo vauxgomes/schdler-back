@@ -1,6 +1,8 @@
 const User = require('../models/User')
 const Project = require('../models/Project')
 const Block = require('../models/Block')
+const Board = require('../models/Board')
+const Slot = require('../models/Slot')
 
 module.exports = {
     // INDEX
@@ -87,11 +89,14 @@ module.exports = {
             })
         }
 
-        // const user = await User.findOne({ _id: project.user })
-        // user.projects.splice(user.projects.indexOf(_id), 1)
-        // await user.save()
+        const user = await User.findOne({ _id: project.user })
+        user.projects.splice(user.projects.indexOf(_id), 1)
+        await user.save()
 
         await Block.deleteMany({ project: project._id })
+        await Board.deleteMany({ project: project._id })
+        await Slot.deleteMany({ project: project._id })
+        
         await Project.deleteOne({ _id })
 
         return response.status(204).send()

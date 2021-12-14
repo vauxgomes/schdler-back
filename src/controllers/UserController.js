@@ -18,6 +18,8 @@ module.exports = {
     async show(request, response) {
         const { login, pass } = request.body
 
+        console.log(login, pass)
+
         const user = await User.findOne(
             {
                 login,

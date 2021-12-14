@@ -61,6 +61,7 @@ module.exports = {
 
         const slot = await Slot.create({
             user: user_id,
+            project: board.project,
             board: board_id,
             index,
             block
