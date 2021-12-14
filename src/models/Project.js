@@ -23,7 +23,21 @@ const Project = new Schema({
         type: Number,
         required: true,
         default: 10
-    },    
+    },
+
+    blocks: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'Block'
+        }
+    ],
+
+    boards: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'boards'
+        }
+    ]
 })
 
 module.exports = mongoose.model('Project', Project)

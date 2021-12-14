@@ -51,7 +51,6 @@ module.exports = {
         }
 
         const { professor, module, location } = request.body
-
         const block = await Block.create({
             user: user_id,
             project: project_id,
@@ -59,6 +58,9 @@ module.exports = {
             module,
             location
         })
+
+        project.blocks.push(block)
+        await project.save()
 
         return response.json({ _id: block._id })
     },
@@ -83,7 +85,7 @@ module.exports = {
         const {
             professor = block.professor,
             module = block.module,
-            location = block.location,
+            location = block.location
         } = request.body
 
         try {
@@ -103,17 +105,27 @@ module.exports = {
         const { _id, project_id } = request.params
         const user_id = request.headers.authorization
 
-        const status = await Block.deleteOne({
+        const block = await Block.findOne({
             _id,
             user: user_id,
             project: project_id
         })
 
-        if (!status.deletedCount) {
+        if (!block) {
             return response.status(401).json({
                 error: 'Not found / Not Allowed'
             })
         }
+
+        const project = await Project.findOne({
+            _id: project_id,
+            user: user_id
+        })
+
+        project.blocks.splice(project.blocks.indexOf(_id), 1)
+        
+        await project.save()
+        await Block.deleteOne({ _id })
 
         return response.status(204).send()
     }
