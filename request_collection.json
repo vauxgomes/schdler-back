@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "d553d49b-ee89-435f-8901-f2d112228094",
+		"_postman_id": "480c948a-6b3c-4caf-932c-222e1ad99993",
 		"name": "Schdler",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -26,13 +26,46 @@
 					"response": []
 				},
 				{
+					"name": "Show",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{user_id}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"login\": \"user1\",\n    \"pass\": \"123456\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api}}/users/session",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"users",
+								"session"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Create",
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"User 1\",\n    \"login\": \"user1\",\n    \"pass\": \"12345\"\n}",
+							"raw": "{\n    \"name\": \"User 1\",\n    \"login\": \"user12\",\n    \"pass\": \"12345\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -126,7 +159,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"Projeto Base Delete\"\n}",
+							"raw": "{\n    \"name\": \"Projeto Exemplo\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -167,13 +200,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{api}}/projects/61b0f1e16148036e23665aa8/update",
+							"raw": "{{api}}/projects/{{project_id}}/update",
 							"host": [
 								"{{api}}"
 							],
 							"path": [
 								"projects",
-								"61b0f1e16148036e23665aa8",
+								"{{project_id}}",
 								"update"
 							]
 						}
@@ -192,13 +225,13 @@
 							}
 						],
 						"url": {
-							"raw": "{{api}}/projects/61b0f691a59875d12f203b07/delete",
+							"raw": "{{api}}/projects/61b9061c76640ff4ea41ffe7/delete",
 							"host": [
 								"{{api}}"
 							],
 							"path": [
 								"projects",
-								"61b0f691a59875d12f203b07",
+								"61b9061c76640ff4ea41ffe7",
 								"delete"
 							]
 						}
@@ -246,7 +279,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"Location Base\"\n}",
+							"raw": "{\n    \"name\": \"Location Exemplo\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -366,7 +399,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"Disciplina Base\"\n}",
+							"raw": "{\n    \"name\": \"Disciplina Exemplo\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -486,7 +519,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"Professor Base\"\n}",
+							"raw": "{\n    \"name\": \"Professor Exemplo\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -751,7 +784,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"title\": \"Board Base\"\n}",
+							"raw": "{\n    \"title\": \"Board Exemplo\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -759,13 +792,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{api}}/projects/{{project_id}}/boards/create",
+							"raw": "{{api}}/projects/boards/create",
 							"host": [
 								"{{api}}"
 							],
 							"path": [
 								"projects",
-								"{{project_id}}",
 								"boards",
 								"create"
 							]
@@ -956,7 +988,7 @@
 				"url": {
 					"raw": "{{api}}/sys",
 					"host": [
-						"localhost"
+						"{{api}}"
 					],
 					"path": [
 						"sys"
@@ -984,40 +1016,6 @@
 					""
 				]
 			}
-		}
-	],
-	"variable": [
-		{
-			"key": "user_id",
-			"value": "61b0efe7b3cda77bbb65d363"
-		},
-		{
-			"key": "project_id",
-			"value": "61b0f634a59875d12f203aff"
-		},
-		{
-			"key": "board_id",
-			"value": "61b22a09c226ac204f42ed84"
-		},
-		{
-			"key": "professor_id",
-			"value": "61b22196b300ffa695a4b7b1"
-		},
-		{
-			"key": "module_id",
-			"value": "61b1eb6f49f49eba189b75c8"
-		},
-		{
-			"key": "location_id",
-			"value": "61b1e52e0cbc0597a12dfabf"
-		},
-		{
-			"key": "block_id",
-			"value": "61b22dedd3a815227c5c3721"
-		},
-		{
-			"key": "api",
-			"value": "localhost:5000"
 		}
 	]
 }

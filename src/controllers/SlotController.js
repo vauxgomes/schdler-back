@@ -30,7 +30,7 @@ module.exports = {
                     }
                 ]
             })
-            .sort({ block: 1 })
+            .sort({ index: 1, block: 1 })
 
         if (!slots) {
             return response.status(401).json({
