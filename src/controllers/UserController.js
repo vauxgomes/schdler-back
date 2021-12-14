@@ -4,7 +4,7 @@ const bcrypt = require('bcrypt-nodejs')
 module.exports = {
     // INDEX
     async index(request, response) {
-        const users = await User.find({}, ['name', 'login', 'pass'])
+        const users = await User.find({}, ['name', 'login'])
 
         if (!users) {
             return response.status(401).json({
