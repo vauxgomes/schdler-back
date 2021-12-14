@@ -6,17 +6,17 @@ module.exports = {
     async index(request, response) {
         const user_id = request.headers.authorization
 
-        const subjects = await Module.find({ user: user_id }).sort({
+        const modules = await Module.find({ user: user_id }).sort({
             name: 1
         })
 
-        if (!subjects) {
+        if (!modules) {
             return response.status(401).json({
                 error: 'Not found / Not Allowed'
             })
         }
 
-        return response.json(subjects)
+        return response.json(modules)
     },
 
     // CREATE
@@ -30,28 +30,37 @@ module.exports = {
             })
         }
 
-        const { name, credits } = request.body
-        const subject = await Module.create({ user: user._id, name, credits })
+        const { name, credits, color } = request.body
+        const module = await Module.create({
+            user: user._id,
+            name,
+            credits,
+            color
+        })
 
-        return response.json({ _id: subject._id, name })
+        return response.json({ _id: module._id, name })
     },
 
     // UPDATE
     async update(request, response) {
         const { _id } = request.params
         const user_id = request.headers.authorization
-        const subject = await Module.findOne({ _id, user: user_id })
+        const module = await Module.findOne({ _id, user: user_id })
 
-        if (!subject) {
+        if (!module) {
             return response.status(401).json({
                 error: 'Not found / Not Allowed'
             })
         }
 
-        const { name = subject.name, credits = subject.credits } = request.body
+        const {
+            name = module.name,
+            credits = module.credits,
+            color = module.color
+        } = request.body
 
         try {
-            await Module.updateOne({ _id }, { name, credits })
+            await Module.updateOne({ _id }, { name, credits, color })
             return response.status(204).send()
         } catch (error) {
             return response.status(403).json({

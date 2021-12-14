@@ -16,7 +16,16 @@ const Module = new Schema({
     credits: {
         type: Number,
         required: true,
-        default: 2
+        default: 40
+    },
+
+    category: {
+        type: String
+    },
+
+    color: {
+        type: String,
+        required: false
     }
 })
 
