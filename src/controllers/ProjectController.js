@@ -6,7 +6,11 @@ module.exports = {
     async index(request, response) {
         const user_id = request.headers.authorization
 
-        const projects = await Project.find({ user: user_id })
+        const projects = await Project.find({ user: user_id }, [
+            'name',
+            'slots',
+            'credits'
+        ])
 
         if (!projects) {
             return response.status(401).json({
@@ -84,7 +88,7 @@ module.exports = {
 
         const user = await User.findOne({ _id: project.user })
         user.projects.splice(user.projects.indexOf(_id), 1)
-        
+
         await user.save()
         await Project.deleteOne({ _id })
 

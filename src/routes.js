@@ -16,6 +16,7 @@ routes.get('/sys', SystemController.index)
 
 // Users
 routes.get('/users', UserController.index)
+routes.post('/users/session', UserController.show)
 routes.post('/users/create', UserController.create)
 routes.put('/users/update', UserController.update)
 
@@ -47,13 +48,19 @@ routes.delete('/professors/:_id/delete', ProfessorController.delete)
 routes.get('/projects/:project_id/blocks', BlockController.index)
 routes.post('/projects/:project_id/blocks/create', BlockController.create)
 routes.put('/projects/:project_id/blocks/:_id/update', BlockController.update)
-routes.delete('/projects/:project_id/blocks/:_id/delete', BlockController.delete)
+routes.delete(
+    '/projects/:project_id/blocks/:_id/delete',
+    BlockController.delete
+)
 
 // Project/Boards
 routes.get('/projects/:project_id/boards', BoardController.index)
 routes.post('/projects/:project_id/boards/create', BoardController.create)
 routes.put('/projects/:project_id/boards/:_id/update', BoardController.update)
-routes.delete('/projects/:project_id/boards/:_id/delete', BoardController.delete)
+routes.delete(
+    '/projects/:project_id/boards/:_id/delete',
+    BoardController.delete
+)
 
 // Boards/Slot
 routes.get('/boards/:board_id/slots', SlotController.index)

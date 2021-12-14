@@ -4,7 +4,7 @@ const bcrypt = require('bcrypt-nodejs')
 module.exports = {
     // INDEX
     async index(request, response) {
-        const users = await User.find({}, ['name', 'login'])
+        const users = await User.find({}, ['name', 'login', 'pass'])
 
         if (!users) {
             return response.status(401).json({
@@ -15,6 +15,28 @@ module.exports = {
         return response.json(users)
     },
 
+    async show(request, response) {
+        const { login, pass } = request.body
+
+        const user = await User.findOne(
+            {
+                login,
+                pass: bcrypt.hashSync(pass, process.env.CYPHER)
+            },
+            ['_id']
+        )
+
+        console.log(login, pass, bcrypt.hashSync(pass, process.env.CYPHER))
+
+        if (!user) {
+            return response.status(401).json({
+                error: 'Not found / Not Allowed'
+            })
+        }
+
+        return response.json(user)
+    },
+
     // CREATE
     async create(request, response) {
         const { name, login, pass } = request.body
@@ -22,7 +44,7 @@ module.exports = {
         const user = await User.create({
             name,
             login,
-            pass: bcrypt.hashSync(pass),
+            pass: bcrypt.hashSync(pass, process.env.CYPHER),
             projects: []
         })
 
@@ -40,19 +62,18 @@ module.exports = {
             })
         }
 
-        const {
+        let {
             name = user.name,
             login = user.login,
             pass = user.pass
         } = request.body
 
-        let pass_ = pass
-        if (!request.body.pass) {
-            pass_ = bcrypt.hashSync(pass)
+        if (!!request.body.pass) {
+            pass = bcrypt.hashSync(request.body.pass, process.env.CYPHER)
         }
 
         try {
-            await User.updateOne({ _id }, { name, login, pass: pass_ })
+            await User.updateOne({ _id }, { name, login, pass })
             return response.status(204).send()
         } catch (error) {
             return response.status(403).json({
