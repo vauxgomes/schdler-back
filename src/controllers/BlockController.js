@@ -39,6 +39,8 @@ module.exports = {
         const user_id = request.headers.authorization
         const { project_id } = request.params
 
+        console.log(user_id, project_id)
+
         const project = await Project.findOne({
             _id: project_id,
             user: user_id
@@ -51,6 +53,7 @@ module.exports = {
         }
 
         const { professor, module, location } = request.body
+        console.log(professor, module, location)
         const block = await Block.create({
             user: user_id,
             project: project_id,
