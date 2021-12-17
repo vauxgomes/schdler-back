@@ -7,7 +7,7 @@ module.exports = {
         const user_id = request.headers.authorization
 
         const modules = await Module.find({ user: user_id }).sort({
-            name: 1
+            created_at: 1
         })
 
         if (!modules) {
