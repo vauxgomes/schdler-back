@@ -64,8 +64,8 @@ routes.delete(
 
 // Boards/Slot
 routes.get('/boards/:board_id/slots', SlotController.index)
-routes.post('/boards/:board_id/slots/create', SlotController.create)
-routes.delete('/boards/:board_id/slots/:_id/delete', SlotController.delete)
+// routes.post('/boards/:board_id/slots/create', SlotController.create)
+// routes.delete('/boards/:board_id/slots/:_id/delete', SlotController.delete)
 
 // Export
 module.exports = routes

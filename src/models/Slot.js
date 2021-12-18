@@ -28,7 +28,7 @@ const Slot = new mongoose.Schema({
     block: {
         type: Schema.Types.ObjectId,
         ref: 'Block',
-        required: true
+        // required: true
     }
 })
 

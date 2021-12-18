@@ -11,7 +11,15 @@ module.exports = {
         const boards = await Board.find({
             user: user_id,
             project: project_id
-        })
+        }).populate([
+            {
+                path: 'slots',
+                select: ['board', 'index', 'block'],
+                populate: {
+                    path: 'block'
+                }
+            }
+        ])
 
         if (!boards) {
             return response.status(401).json({
@@ -47,7 +55,21 @@ module.exports = {
             period
         })
 
-        return response.json({ _id: board._id, title })
+        // Filling slots
+        for (let index = 0; index < project.slots; index++) {
+            let slot = await Slot.create({
+                user: user_id,
+                project: project_id,
+                board: board._id,
+                index,
+                block: null
+            })
+
+            board.slots.push(slot)
+        }
+
+        await board.save()
+        return response.json(board)
     },
 
     // UPDATE
