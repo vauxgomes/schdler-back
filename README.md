@@ -1,10 +1,10 @@
 # Schdler Backend
 
-### <img src="https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white" /> <img src="https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white" /> <img src="https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white" /> <img src="https://img.shields.io/badge/Docker-2CA5E0?style=for-the-badge&logo=docker&logoColor=white"/>
+### <img src="https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white" /> <img src="https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white" /> <img src="https://img.shields.io/badge/Docker-2CA5E0?style=for-the-badge&logo=docker&logoColor=white"/>
 
 - [Description](#description)
 - [Entities](#entities)
-- [Installation](#funcionalidades)
+- [Installation](#installation)
 - [Documentation](#documentation)
 
 ## Description
@@ -22,17 +22,11 @@ This repository provides a simple API for educational class scheduling. It was c
 
 ## Instalation
 In order to run the app one need to set the following environment variables:
-- `APP_NAME`
+- `NODE_ENV`
 - `PORT`
-- `DB_URL`: Mongo DB URL with user, database and password
-
-```sh
-# Build
-docker build . -t <your username>/schdler-back
-
-# Detached run
-docker run -p 5000:3333 -d <your username>/schdler-back
-```
+- `SALT`: Numeric value for encrypting
+- `KEY`: Token key
+- `EXP`: Expiration time for token (e.g. `8h`)
 
 ## Documentation
 > -- _Ain't nobody have time for that_.

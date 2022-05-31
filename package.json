@@ -1,22 +1,33 @@
 {
-    "name": "schdler-back",
+    "name": "schdler-backend",
     "version": "1.0.0",
+    "description": "### <img src=\"https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white\" /> <img src=\"https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white\" /> <img src=\"https://img.shields.io/badge/Docker-2CA5E0?style=for-the-badge&logo=docker&logoColor=white\"/>",
     "main": "index.js",
-    "author": "Vaux Gomes",
-    "license": "MIT",
     "scripts": {
-        "dev": "nodemon src/index.js",
-        "start": "node src/index.js"
+        "start": "node src/server.js",
+        "dev": "NODE_ENV=development nodemon src/server.js"
     },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/vauxgomes/schdler-back.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/vauxgomes/schdler-back/issues"
+    },
+    "homepage": "https://github.com/vauxgomes/schdler-back#readme",
     "dependencies": {
-        "bcrypt-nodejs": "^0.0.3",
+        "bcrypt": "^5.0.1",
         "cors": "^2.8.5",
-        "dotenv": "^10.0.0",
-        "express": "^4.17.1",
-        "knex": "^0.95.14",
-        "mongoose": "^6.1.0"
+        "dotenv": "^16.0.1",
+        "express": "^4.18.1",
+        "jsonwebtoken": "^8.5.1",
+        "knex": "^2.1.0",
+        "sqlite3": "^5.0.8"
     },
     "devDependencies": {
-        "nodemon": "^2.0.15"
+        "nodemon": "^2.0.16"
     }
 }
