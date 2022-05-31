@@ -10,6 +10,7 @@ const AccountController = require('./controllers/AccountController')
 const UserController = require('./controllers/UserController')
 const ProjectController = require('./controllers/ProjectController')
 const LocationController = require('./controllers/LocationController')
+const ModuleController = require('./controllers/ModuleController')
 
 // Account
 routes.post('/login', AccountController.register)
@@ -35,6 +36,13 @@ routes.get('/locations/:id', auth, LocationController.show)
 routes.post('/locations', auth, LocationController.create)
 routes.put('/locations/:id', auth, LocationController.update)
 routes.delete('/locations/:id', auth, LocationController.delete)
+
+// Module
+routes.get('/modules', auth, ModuleController.index)
+routes.get('/modules/:id', auth, ModuleController.show)
+routes.post('/modules', auth, ModuleController.create)
+routes.put('/modules/:id', auth, ModuleController.update)
+routes.delete('/modules/:id', auth, ModuleController.delete)
 
 // Export
 module.exports = routes
