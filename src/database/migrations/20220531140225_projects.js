@@ -5,9 +5,6 @@ exports.up = function (knex) {
         table.increments('id').primary()
 
         table.string('name', 255).notNullable()
-        table.integer('credits').notNullable()
-        table.integer('slots').notNullable()
-
         table
             .integer('user_id')
             .notNullable()

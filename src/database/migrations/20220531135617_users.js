@@ -8,7 +8,7 @@ exports.up = function (knex) {
         table.string('username', 20).unique().notNullable()
         table.string('password', 100).notNullable()
 
-        table.integer('access').unsigned().notNullable()
+        table.integer('role').unsigned().notNullable()
 
         table.timestamp('created_at').notNullable().defaultTo(knex.fn.now())
         table.timestamp('updated_at').notNullable().defaultTo(knex.fn.now())

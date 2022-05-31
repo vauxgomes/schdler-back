@@ -1,19 +1,15 @@
 exports.up = function (knex) {
-    console.log('Migration: SLOTS')
+    console.log('Migration: BOARDS')
 
-    return knex.schema.createTable('slots', (table) => {
+    return knex.schema.createTable('boards', (table) => {
         table.increments('id').primary()
 
         table.integer('index').notNullable()
+        table.integer('size').notNullable().defaultTo(10)
         table
             .integer('project_id')
             .notNullable()
             .references('projects.id')
-            .onDelete('CASCADE')
-        table
-            .integer('board_id')
-            .notNullable()
-            .references('boards.id')
             .onDelete('CASCADE')
         table
             .integer('block_id')
@@ -27,5 +23,5 @@ exports.up = function (knex) {
 }
 
 exports.down = function (knex) {
-    return knex.schema.dropTable('slots')
+    return knex.schema.dropTable('boards')
 }
