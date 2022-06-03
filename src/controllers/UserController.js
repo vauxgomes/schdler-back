@@ -1,6 +1,6 @@
 const knex = require('../database')
 const { hashSync } = require('bcrypt')
-const { ENC_SALT } = process.env
+const { SALT } = process.env
 const { roles } = require('../middleware/authRoles')
 
 // Controller
@@ -28,7 +28,7 @@ module.exports = {
     async create(req, res) {
         try {
             let { name, username, password } = req.body
-            password = hashSync(password, Number(ENC_SALT))
+            password = hashSync(password, Number(SALT))
 
             const [id] = await knex('users').insert({
                 name,
@@ -65,7 +65,7 @@ module.exports = {
 
         try {
             if (password) {
-                password = hashSync(password, ENC_SALT)
+                password = hashSync(password, SALT)
             }
 
             await knex('users')

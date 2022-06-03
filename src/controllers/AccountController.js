@@ -2,7 +2,7 @@ const knex = require('../database')
 const jwt = require('jsonwebtoken')
 
 const { compareSync } = require('bcrypt')
-const { TK_KEY, TK_EXP } = process.env
+const { KEY, EXP } = process.env
 
 // Controller
 module.exports = {
@@ -23,9 +23,9 @@ module.exports = {
                         id: user.id,
                         role: user.role
                     },
-                    TK_KEY,
+                    KEY,
                     {
-                        expiresIn: TK_EXP
+                        expiresIn: EXP
                     }
                 )
 
@@ -41,6 +41,7 @@ module.exports = {
                 })
             }
         } catch (err) {
+            console.log(err)
             return res.status(400).json({
                 success: false,
                 message: 'user.registration.error'

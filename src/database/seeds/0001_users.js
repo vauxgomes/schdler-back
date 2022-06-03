@@ -3,7 +3,7 @@ const dotenv = require('dotenv')
 dotenv.config()
 
 const { roles } = require('../../middleware/authRoles')
-const ENC_SALT = Number(process.env.ENC_SALT)
+const SALT = Number(process.env.SALT)
 
 exports.seed = async function (knex) {
     console.log('SEEDS: USERS')
@@ -18,13 +18,13 @@ exports.seed = async function (knex) {
         {
             name: 'Root',
             username: 'root',
-            password: hashSync('root', ENC_SALT),
+            password: hashSync('root', SALT),
             role: roles.ROOT
         },
         {
             name: 'Admin',
             username: 'admin',
-            password: hashSync('admin', ENC_SALT),
+            password: hashSync('admin', SALT),
             role: roles.ADMIN
         }
     ])
