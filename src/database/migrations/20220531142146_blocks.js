@@ -5,6 +5,11 @@ exports.up = function (knex) {
         table.increments('id').primary()
 
         table
+            .integer('project_id')
+            .notNullable()
+            .references('projects.id')
+            .onDelete('CASCADE')
+        table
             .integer('professor_id')
             .notNullable()
             .references('professors.id')
@@ -20,7 +25,7 @@ exports.up = function (knex) {
             .references('users.id')
             .onDelete('CASCADE')
 
-        table.unique(['professor_id', 'module_id'])
+        table.unique(['project_id', 'professor_id', 'module_id'])
 
         table.timestamp('created_at').notNullable().defaultTo(knex.fn.now())
         table.timestamp('updated_at').notNullable().defaultTo(knex.fn.now())

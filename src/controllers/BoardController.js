@@ -1,51 +1,47 @@
 const knex = require('../database')
-const uuid = require('uuid')
 
 // Controller
 module.exports = {
     // Index
     async index(req, res) {
+        const { project_id } = req.params
         const { id: user_id } = req.user
         const projects = await knex
-            .select('id', 'name', 'code')
-            .from('projects')
-            .where({ user_id })
+            .select('id', 'name', 'period', 'size')
+            .from('boards')
+            .where({ project_id, user_id })
 
         return res.json(projects)
-    },
-
-    // Show
-    async show(req, res) {
-        const { id } = req.params
-        const { id: user_id } = req.user
-
-        const project = await knex
-            .select('id', 'name', 'code')
-            .from('projects')
-            .where({ id, user_id })
-            .first()
-
-        return res.json(project)
     },
 
     // Create
     async create(req, res) {
         try {
-            const { name } = req.body
+            const { project_id } = req.params
+            const { name, period, times } = req.body
             const { id: user_id } = req.user
-            const code = uuid.v4()
 
-            const [id] = await knex('projects').insert({ name, code, user_id })
+            // Size
+            const size =
+                (period === 'D' ? 2 * times : times) * (process.env.DAYS ?? 5)
+
+            const [id] = await knex('boards').insert({
+                name,
+                period,
+                size,
+                project_id,
+                user_id
+            })
 
             return res.json({
                 success: true,
-                message: 'project.create.ok',
-                project: { id, code }
+                message: 'board.create.ok',
+                board: { id }
             })
         } catch (err) {
             return res.status(404).json({
                 success: false,
-                message: 'project.create.nok'
+                message: 'board.create.nok'
             })
         }
     },
@@ -53,54 +49,56 @@ module.exports = {
     // Update
     async update(req, res) {
         const { name } = req.body
-        const { id } = req.params
+        const { project_id, id } = req.params
         const { id: user_id } = req.user
 
         try {
-            const result = await knex('projects')
+            const result = await knex('boards')
                 .update({ name })
-                .where({ id, user_id })
+                .where({ id, project_id, user_id })
 
             if (result)
                 return res.status(200).send({
                     success: true,
-                    msg: 'project.update.ok'
+                    msg: 'board.update.ok'
                 })
             else
                 return res.status(404).send({
                     success: false,
-                    msg: 'project.update.nok'
+                    msg: 'board.update.nok'
                 })
         } catch (err) {
             return res.status(404).send({
                 success: false,
-                msg: 'project.update.err'
+                msg: 'board.update.err'
             })
         }
     },
 
     // Delete
     async delete(req, res) {
-        const { id } = req.params
+        const { project_id, id } = req.params
         const { id: user_id } = req.user
 
         try {
-            const result = await knex('projects').where({ id, user_id }).del()
+            const result = await knex('boards')
+                .where({ project_id, id, user_id })
+                .del()
 
             if (result)
                 return res.status(200).send({
                     success: true,
-                    msg: 'project.delete.ok'
+                    msg: 'board.delete.ok'
                 })
             else
                 return res.status(404).send({
                     success: false,
-                    msg: 'project.delete.nok'
+                    msg: 'board.delete.nok'
                 })
         } catch (err) {
             return res.status(404).send({
                 success: false,
-                msg: 'project.delete.err'
+                msg: 'board.delete.err'
             })
         }
     }

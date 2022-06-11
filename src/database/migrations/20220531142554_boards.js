@@ -4,17 +4,18 @@ exports.up = function (knex) {
     return knex.schema.createTable('boards', (table) => {
         table.increments('id').primary()
 
-        table.integer('index').notNullable()
-        table.integer('size').notNullable().defaultTo(10)
+        table.string('name', 255).notNullable()
+        table.enu('period', ['D', 'M', 'V', 'N']).notNullable()
+        table.integer('size').notNullable()
         table
             .integer('project_id')
             .notNullable()
             .references('projects.id')
             .onDelete('CASCADE')
         table
-            .integer('block_id')
+            .integer('user_id')
             .notNullable()
-            .references('blocks.id')
+            .references('users.id')
             .onDelete('CASCADE')
 
         table.timestamp('created_at').notNullable().defaultTo(knex.fn.now())

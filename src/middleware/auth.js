@@ -11,7 +11,7 @@ module.exports = (req, res, next) => {
     }
 
     try {
-        req.user = jwt.verify(token, process.env.TK_KEY)
+        req.user = jwt.verify(token, process.env.KEY)
     } catch (err) {
         return res.status(401).send({
             success: false,

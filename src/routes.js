@@ -9,18 +9,19 @@ const auth = require('./middleware/auth')
 const AccountController = require('./controllers/AccountController')
 const UserController = require('./controllers/UserController')
 const ProjectController = require('./controllers/ProjectController')
+const RelatedProjectController = require('./controllers/RelatedProjectController')
 const ProfessorController = require('./controllers/ProfessorController')
 const ModuleController = require('./controllers/ModuleController')
 const LocationController = require('./controllers/LocationController')
 const BlockController = require('./controllers/BlockController')
+const BoardController = require('./controllers/BoardController')
 
 // Account
 routes.post('/login', AccountController.register)
 
 // Users
 routes.get('/users', auth, UserController.index)
-routes.get('/users/show', auth, UserController.show)
-routes.get('/users/show/:id', auth, UserController.show)
+routes.get('/users/show/:id?', auth, UserController.show)
 routes.post('/users', UserController.create)
 routes.put('/users/', auth, UserController.update)
 routes.delete('/users/', auth, UserController.delete)
@@ -31,6 +32,23 @@ routes.get('/projects/:id', auth, ProjectController.show)
 routes.post('/projects', auth, ProjectController.create)
 routes.put('/projects/:id', auth, ProjectController.update)
 routes.delete('/projects/:id', auth, ProjectController.delete)
+
+// Related Projects
+routes.get(
+    '/projects/:project_id/related',
+    auth,
+    RelatedProjectController.index
+)
+routes.post(
+    '/projects/:project_id/related',
+    auth,
+    RelatedProjectController.create
+)
+routes.delete(
+    '/projects/:project_id/related/:code',
+    auth,
+    RelatedProjectController.delete
+)
 
 // Professor
 routes.get('/professors', auth, ProfessorController.index)
@@ -54,11 +72,16 @@ routes.put('/locations/:id', auth, LocationController.update)
 routes.delete('/locations/:id', auth, LocationController.delete)
 
 // Block
-routes.get('/blocks', auth, BlockController.index)
-routes.get('/blocks/:id', auth, BlockController.show)
-routes.post('/blocks', auth, BlockController.create)
-routes.put('/blocks/:id', auth, BlockController.update)
-routes.delete('/blocks/:id', auth, BlockController.delete)
+routes.get('/projects/:project_id/blocks', auth, BlockController.index)
+routes.get('/projects/:project_id/blocks/:id', auth, BlockController.show)
+routes.post('/projects/:project_id/blocks', auth, BlockController.create)
+routes.delete('/projects/:project_id/blocks/:id', auth, BlockController.delete)
+
+// Board
+routes.get('/projects/:project_id/boards', auth, BoardController.index)
+routes.post('/projects/:project_id/boards', auth, BoardController.create)
+routes.put('/projects/:project_id/boards/:id', auth, BoardController.update)
+routes.delete('/projects/:project_id/boards/:id', auth, BoardController.delete)
 
 // Export
 module.exports = routes

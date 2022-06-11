@@ -4,23 +4,25 @@ const knex = require('../database')
 module.exports = {
     // Index
     async index(req, res) {
+        const { project_id } = req.params
         const { id: user_id } = req.user
         const blocks = await knex
-            .select('blocks.id', 'professor_id', 'module_id')
+            .select('blocks.id', 'project_id', 'professor_id', 'module_id')
             .from('blocks')
-            .where({ user_id })
+            .where({ project_id, user_id })
 
         return res.json(blocks)
     },
 
     // Show
     async show(req, res) {
-        const { id } = req.params
+        const { project_id, id } = req.params
         const { id: user_id } = req.user
 
         const block = await knex
             .select(
                 'blocks.id',
+                'project_id',
                 'professors.id as professor_id',
                 'professors.name as professor_name',
                 'modules.id as module_id',
@@ -30,8 +32,18 @@ module.exports = {
             .from('blocks')
             .innerJoin('professors', 'professors.id', 'blocks.professor_id')
             .innerJoin('modules', 'modules.id', 'blocks.module_id')
-            .where({ 'blocks.id': id, 'blocks.user_id': user_id })
+            .where({
+                'blocks.id': id,
+                'blocks.project_id': project_id,
+                'blocks.user_id': user_id
+            })
             .first()
+
+        console.log({
+            'blocks.id': id,
+            'blocks.project_id': project_id,
+            'blocks.user_id': user_id
+        })
 
         return res.json(block)
     },
@@ -40,9 +52,11 @@ module.exports = {
     async create(req, res) {
         try {
             const { professor_id, module_id } = req.body
+            const { project_id } = req.params
             const { id: user_id } = req.user
 
             const [id] = await knex('blocks').insert({
+                project_id,
                 professor_id,
                 module_id,
                 user_id
@@ -61,43 +75,15 @@ module.exports = {
         }
     },
 
-    // Update
-    async update(req, res) {
-        const { professor_id, module_id } = req.body
-        const { id } = req.params
+    // Delete
+    async delete(req, res) {
+        const { project_id, id } = req.params
         const { id: user_id } = req.user
 
         try {
             const result = await knex('blocks')
-                .update({ professor_id, module_id })
-                .where({ id, user_id })
-
-            if (result)
-                return res.status(200).send({
-                    success: true,
-                    msg: 'block.update.ok'
-                })
-            else
-                return res.status(404).send({
-                    success: false,
-                    msg: 'block.update.nok'
-                })
-        } catch (err) {
-            console.log(err)
-            return res.status(404).send({
-                success: false,
-                msg: 'block.update.err'
-            })
-        }
-    },
-
-    // Delete
-    async delete(req, res) {
-        const { id } = req.params
-        const { id: user_id } = req.user
-
-        try {
-            const result = await knex('blocks').where({ id, user_id }).del()
+                .where({ id, project_id, user_id })
+                .del()
 
             if (result)
                 return res.status(200).send({

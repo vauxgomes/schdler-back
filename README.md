@@ -24,6 +24,7 @@ This repository provides a simple API for educational class scheduling. It was c
 In order to run the app one need to set the following environment variables:
 - `NODE_ENV`
 - `PORT`
+- `DAYS`: Week size (default: 5)
 - `SALT`: Numeric value for encrypting
 - `KEY`: Token key
 - `EXP`: Expiration time for token (e.g. `8h`)
