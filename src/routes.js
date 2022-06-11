@@ -15,6 +15,7 @@ const ModuleController = require('./controllers/ModuleController')
 const LocationController = require('./controllers/LocationController')
 const BlockController = require('./controllers/BlockController')
 const BoardController = require('./controllers/BoardController')
+const SlotController = require('./controllers/SlotController')
 
 // Account
 routes.post('/login', AccountController.register)
@@ -32,23 +33,6 @@ routes.get('/projects/:id', auth, ProjectController.show)
 routes.post('/projects', auth, ProjectController.create)
 routes.put('/projects/:id', auth, ProjectController.update)
 routes.delete('/projects/:id', auth, ProjectController.delete)
-
-// Related Projects
-routes.get(
-    '/projects/:project_id/related',
-    auth,
-    RelatedProjectController.index
-)
-routes.post(
-    '/projects/:project_id/related',
-    auth,
-    RelatedProjectController.create
-)
-routes.delete(
-    '/projects/:project_id/related/:code',
-    auth,
-    RelatedProjectController.delete
-)
 
 // Professor
 routes.get('/professors', auth, ProfessorController.index)
@@ -82,6 +66,30 @@ routes.get('/projects/:project_id/boards', auth, BoardController.index)
 routes.post('/projects/:project_id/boards', auth, BoardController.create)
 routes.put('/projects/:project_id/boards/:id', auth, BoardController.update)
 routes.delete('/projects/:project_id/boards/:id', auth, BoardController.delete)
+
+// Slot
+routes.get('/boards/:board_id/slots', auth, SlotController.index)
+routes.post('/boards/:board_id/slots', auth, SlotController.create)
+routes.put('/boards/:board_id/slots/:id', auth, SlotController.update)
+routes.delete('/boards/:board_id/slots/:id', auth, SlotController.delete)
+
+// Related Projects
+// Related Projects
+routes.get(
+    '/projects/:project_id/related',
+    auth,
+    RelatedProjectController.index
+)
+routes.post(
+    '/projects/:project_id/related',
+    auth,
+    RelatedProjectController.create
+)
+routes.delete(
+    '/projects/:project_id/related/:code',
+    auth,
+    RelatedProjectController.delete
+)
 
 // Export
 module.exports = routes
