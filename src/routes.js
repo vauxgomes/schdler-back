@@ -74,7 +74,6 @@ routes.put('/boards/:board_id/slots/:id', auth, SlotController.update)
 routes.delete('/boards/:board_id/slots/:id', auth, SlotController.delete)
 
 // Related Projects
-// Related Projects
 routes.get(
     '/projects/:project_id/related',
     auth,
@@ -89,6 +88,11 @@ routes.delete(
     '/projects/:project_id/related/:code',
     auth,
     RelatedProjectController.delete
+)
+routes.get(
+    '/projects/:project_id/related/boards',
+    auth,
+    RelatedProjectController.index
 )
 
 // Export

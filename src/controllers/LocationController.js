@@ -38,7 +38,7 @@ module.exports = {
             return res.json({
                 success: true,
                 message: 'location.create.ok',
-                location: { id }
+                data: { id }
             })
         } catch (err) {
             return res.status(404).json({

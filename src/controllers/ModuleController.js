@@ -42,9 +42,10 @@ module.exports = {
             return res.json({
                 success: true,
                 message: 'module.create.ok',
-                module: { id }
+                data: { id }
             })
         } catch (err) {
+            console.log(err)
             return res.status(404).json({
                 success: false,
                 message: 'module.create.nok'

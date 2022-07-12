@@ -6,9 +6,10 @@ module.exports = {
     async index(req, res) {
         const { id: user_id } = req.user
         const professors = await knex
-            .select('id', 'name')
+            .select('id', 'name', 'created_at')
             .from('professors')
             .where({ user_id })
+            .orderBy('name', 'asc')
 
         return res.json(professors)
     },
@@ -33,14 +34,18 @@ module.exports = {
             const { name } = req.body
             const { id: user_id } = req.user
 
-            const [id] = await knex('professors').insert({ name, user_id })
+            const [id] = await knex('professors').insert({
+                name,
+                user_id
+            })
 
             return res.json({
                 success: true,
                 message: 'professor.create.ok',
-                professor: { id }
+                data: { id }
             })
         } catch (err) {
+            console.log(err)
             return res.status(404).json({
                 success: false,
                 message: 'professor.create.nok'
@@ -62,17 +67,17 @@ module.exports = {
             if (result)
                 return res.status(200).send({
                     success: true,
-                    msg: 'professor.update.ok'
+                    message: 'professor.update.ok'
                 })
             else
                 return res.status(404).send({
                     success: false,
-                    msg: 'professor.update.nok'
+                    message: 'professor.update.nok'
                 })
         } catch (err) {
             return res.status(404).send({
                 success: false,
-                msg: 'professor.update.err'
+                message: 'professor.update.err'
             })
         }
     },
@@ -88,17 +93,17 @@ module.exports = {
             if (result)
                 return res.status(200).send({
                     success: true,
-                    msg: 'professor.delete.ok'
+                    message: 'professor.delete.ok'
                 })
             else
                 return res.status(404).send({
                     success: false,
-                    msg: 'professor.delete.nok'
+                    message: 'professor.delete.nok'
                 })
         } catch (err) {
             return res.status(404).send({
                 success: false,
-                msg: 'professor.delete.err'
+                message: 'professor.delete.err'
             })
         }
     }

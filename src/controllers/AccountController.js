@@ -11,7 +11,7 @@ module.exports = {
             const { username, password } = req.body
 
             const user = await knex
-                .select('id', 'role', 'password')
+                .select('id', 'role', 'password', 'name')
                 .from('users')
                 .where('username', username)
                 .first()
@@ -32,6 +32,7 @@ module.exports = {
                 return res.json({
                     success: true,
                     token,
+                    name: user.name,
                     message: 'user.registration.ok'
                 })
             } else {
@@ -41,7 +42,7 @@ module.exports = {
                 })
             }
         } catch (err) {
-            console.log(err)
+            // console.log(err)
             return res.status(400).json({
                 success: false,
                 message: 'user.registration.error'
