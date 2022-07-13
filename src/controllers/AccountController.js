@@ -1,8 +1,6 @@
 const knex = require('../database')
 const jwt = require('jsonwebtoken')
-
 const { compareSync } = require('bcrypt')
-const { KEY, EXP } = process.env
 
 // Controller
 module.exports = {
@@ -23,17 +21,28 @@ module.exports = {
                         id: user.id,
                         role: user.role
                     },
-                    KEY,
+                    process.env.TOKEN_SECRET,
                     {
-                        expiresIn: EXP
+                        expiresIn: process.env.TOKEN_LIFE
                     }
+                )
+
+                const refresh_token = jwt.sign(
+                    {
+                        id: user.id,
+                        role: user.role
+                    },
+                    process.env.REFRESH_SECRET
                 )
 
                 return res.json({
                     success: true,
+                    message: 'user.registration.ok',
                     token,
-                    name: user.name,
-                    message: 'user.registration.ok'
+                    refresh_token,
+                    data: {
+                        name: user.name
+                    }
                 })
             } else {
                 return res.json({

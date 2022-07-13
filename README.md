@@ -26,8 +26,9 @@ In order to run the app one need to set the following environment variables:
 - `PORT`
 - `DAYS`: Week size (default: 5)
 - `SALT`: Numeric value for encrypting
-- `KEY`: Token key
-- `EXP`: Expiration time for token (e.g. `8h`)
+- `TOKEN_SECRET`: Token key
+- `TOKEN_LIFE`: Expiration time for token (e.g. `8h`)
+- `REFRESH_SECRET`: Refresh Token Key
 
 ## Documentation
 > -- _Ain't nobody have time for that_.
