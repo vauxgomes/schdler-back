@@ -7,9 +7,22 @@ module.exports = {
         const { project_id } = req.params
         const { id: user_id } = req.user
         const blocks = await knex
-            .select('blocks.id', 'project_id', 'professor_id', 'module_id')
+            .select(
+                'blocks.id',
+                'project_id',
+                'professors.id as professor_id',
+                'professors.name as professor_name',
+                'modules.id as module_id',
+                'modules.name as module_name',
+                'credits'
+            )
             .from('blocks')
-            .where({ project_id, user_id })
+            .innerJoin('professors', 'professors.id', 'blocks.professor_id')
+            .innerJoin('modules', 'modules.id', 'blocks.module_id')
+            .where({
+                'blocks.project_id': project_id,
+                'blocks.user_id': user_id
+            })
 
         return res.json(blocks)
     },

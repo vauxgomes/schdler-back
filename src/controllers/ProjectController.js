@@ -7,9 +7,10 @@ module.exports = {
     async index(req, res) {
         const { id: user_id } = req.user
         const projects = await knex
-            .select('id', 'name', 'code')
+            .select('id', 'name', 'code', 'created_at')
             .from('projects')
             .where({ user_id })
+            .orderBy('created_at', 'desc')
 
         return res.json(projects)
     },
@@ -40,7 +41,7 @@ module.exports = {
             return res.json({
                 success: true,
                 message: 'project.create.ok',
-                project: { id, code }
+                data: { id, code }
             })
         } catch (err) {
             return res.status(404).json({
