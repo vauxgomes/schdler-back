@@ -78,7 +78,7 @@ module.exports = {
             return res.json({
                 success: true,
                 message: 'block.create.ok',
-                block: { id }
+                data: { id }
             })
         } catch (err) {
             return res.status(404).json({

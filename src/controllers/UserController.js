@@ -40,7 +40,7 @@ module.exports = {
             return res.json({
                 success: true,
                 message: 'user.create.ok',
-                user: { id }
+                data: { id }
             })
         } catch (err) {
             console.log(err)

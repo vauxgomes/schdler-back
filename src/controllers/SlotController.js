@@ -45,7 +45,7 @@ module.exports = {
             return res.json({
                 success: true,
                 message: 'slot.create.ok',
-                slot: { id }
+                data: { id }
             })
         } catch (err) {
             console.log(err)
