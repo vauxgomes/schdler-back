@@ -9,6 +9,7 @@ module.exports = {
             .select('id', 'name', 'credits')
             .from('modules')
             .where({ user_id })
+            .orderBy('name', 'asc')
 
         return res.json(modules)
     },

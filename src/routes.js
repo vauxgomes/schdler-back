@@ -57,7 +57,7 @@ routes.put('/locations/:id', auth, LocationController.update)
 routes.delete('/locations/:id', auth, LocationController.delete)
 
 // Block
-routes.get('/projects/:project_id/blocks', delay, auth, BlockController.index)
+routes.get('/projects/:project_id/blocks', auth, BlockController.index)
 routes.get('/projects/:project_id/blocks/:id', auth, BlockController.show)
 routes.post('/projects/:project_id/blocks', auth, BlockController.create)
 routes.delete('/projects/:project_id/blocks/:id', auth, BlockController.delete)
