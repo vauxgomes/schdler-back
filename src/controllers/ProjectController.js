@@ -15,20 +15,6 @@ module.exports = {
         return res.json(projects)
     },
 
-    // Show
-    async show(req, res) {
-        const { id } = req.params
-        const { id: user_id } = req.user
-
-        const project = await knex
-            .select('id', 'name', 'code')
-            .from('projects')
-            .where({ id, user_id })
-            .first()
-
-        return res.json(project)
-    },
-
     // Create
     async create(req, res) {
         try {

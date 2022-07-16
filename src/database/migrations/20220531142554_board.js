@@ -1,11 +1,20 @@
 exports.up = function (knex) {
-    console.log('Migration: MODULES')
+    console.log('Migration: Board')
 
-    return knex.schema.createTable('modules', (table) => {
+    return knex.schema.createTable('boards', (table) => {
         table.increments('id').primary()
 
+        table
+            .integer('project_id')
+            .notNullable()
+            .references('projects.id')
+            .onDelete('CASCADE')
+
         table.string('name', 255).notNullable()
-        table.integer('credits').unsigned().notNullable().defaultTo(40)
+        table
+            .enu('shift', ['morning', 'afternoon', 'night', 'daytime'])
+            .notNullable()
+
         table
             .integer('user_id')
             .notNullable()
@@ -18,5 +27,5 @@ exports.up = function (knex) {
 }
 
 exports.down = function (knex) {
-    return knex.schema.dropTable('modules')
+    return knex.schema.dropTable('boards')
 }

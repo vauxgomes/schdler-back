@@ -6,30 +6,25 @@ module.exports = {
     async index(req, res) {
         const { project_id } = req.params
         const { id: user_id } = req.user
-        const projects = await knex
-            .select('id', 'name', 'period', 'size')
+        const boards = await knex
+            .select('id', 'name', 'shift')
             .from('boards')
             .where({ project_id, user_id })
 
-        return res.json(projects)
+        return res.json(boards)
     },
 
     // Create
     async create(req, res) {
         try {
             const { project_id } = req.params
-            const { name, period, times } = req.body
+            const { name, shift } = req.body
             const { id: user_id } = req.user
 
-            // Size
-            const size =
-                (period === 'D' ? 2 * times : times) * (process.env.DAYS ?? 5)
-
             const [id] = await knex('boards').insert({
-                name,
-                period,
-                size,
                 project_id,
+                name,
+                shift,
                 user_id
             })
 
@@ -48,13 +43,13 @@ module.exports = {
 
     // Update
     async update(req, res) {
-        const { name } = req.body
+        const { name, shift } = req.body
         const { project_id, id } = req.params
         const { id: user_id } = req.user
 
         try {
             const result = await knex('boards')
-                .update({ name })
+                .update({ name, shift })
                 .where({ id, project_id, user_id })
 
             if (result)

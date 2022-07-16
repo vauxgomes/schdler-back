@@ -6,11 +6,11 @@ const { roles } = require('../../middleware/authRoles')
 const SALT = Number(process.env.SALT)
 
 exports.seed = async function (knex) {
-    console.log('SEEDS: USERS')
-
     if (await knex.select('id').from('users').first()) {
-        console.log(' - ABORTED: Table has already being populated')
+        console.log('SEEDS: USERS ...Aborted')
         return
+    } else {
+        console.log('SEEDS: USERS')
     }
 
     // await knex('users').del()

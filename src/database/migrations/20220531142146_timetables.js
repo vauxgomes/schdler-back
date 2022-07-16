@@ -1,7 +1,7 @@
 exports.up = function (knex) {
-    console.log('Migration: BLOCKS')
+    console.log('Migration: TIMETABLES')
 
-    return knex.schema.createTable('blocks', (table) => {
+    return knex.schema.createTable('timetables', (table) => {
         table.increments('id').primary()
 
         table
@@ -9,23 +9,18 @@ exports.up = function (knex) {
             .notNullable()
             .references('projects.id')
             .onDelete('CASCADE')
+
+        table.time('start').notNullable()
+        table.time('end').notNullable()
         table
-            .integer('professor_id')
+            .enu('shift', ['morning', 'afternoon', 'night', 'daytime'])
             .notNullable()
-            .references('professors.id')
-            .onDelete('CASCADE')
-        table
-            .integer('module_id')
-            .notNullable()
-            .references('modules.id')
-            .onDelete('CASCADE')
+
         table
             .integer('user_id')
             .notNullable()
             .references('users.id')
             .onDelete('CASCADE')
-
-        table.unique(['project_id', 'professor_id', 'module_id'])
 
         table.timestamp('created_at').notNullable().defaultTo(knex.fn.now())
         table.timestamp('updated_at').notNullable().defaultTo(knex.fn.now())
@@ -33,5 +28,5 @@ exports.up = function (knex) {
 }
 
 exports.down = function (knex) {
-    return knex.schema.dropTable('blocks')
+    return knex.schema.dropTable('timetables')
 }

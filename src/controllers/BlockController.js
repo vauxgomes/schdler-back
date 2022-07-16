@@ -6,14 +6,18 @@ module.exports = {
     async index(req, res) {
         const { project_id } = req.params
         const { id: user_id } = req.user
+
         const blocks = await knex
             .select(
                 'blocks.id',
-                'project_id',
+                'blocks.project_id',
                 'professors.id as professor_id',
                 'professors.name as professor_name',
+                'professors.short as professor_short',
+                'professors.color as professor_color',
                 'modules.id as module_id',
                 'modules.name as module_name',
+                'modules.short as module_short',
                 'credits'
             )
             .from('blocks')
@@ -25,40 +29,6 @@ module.exports = {
             })
 
         return res.json(blocks)
-    },
-
-    // Show
-    async show(req, res) {
-        const { project_id, id } = req.params
-        const { id: user_id } = req.user
-
-        const block = await knex
-            .select(
-                'blocks.id',
-                'project_id',
-                'professors.id as professor_id',
-                'professors.name as professor_name',
-                'modules.id as module_id',
-                'modules.name as module_name',
-                'credits'
-            )
-            .from('blocks')
-            .innerJoin('professors', 'professors.id', 'blocks.professor_id')
-            .innerJoin('modules', 'modules.id', 'blocks.module_id')
-            .where({
-                'blocks.id': id,
-                'blocks.project_id': project_id,
-                'blocks.user_id': user_id
-            })
-            .first()
-
-        console.log({
-            'blocks.id': id,
-            'blocks.project_id': project_id,
-            'blocks.user_id': user_id
-        })
-
-        return res.json(block)
     },
 
     // Create

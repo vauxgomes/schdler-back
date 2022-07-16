@@ -5,37 +5,30 @@ module.exports = {
     // Index
     async index(req, res) {
         const { id: user_id } = req.user
+        const { project_id } = req.params
+
         const professors = await knex
-            .select('id', 'name', 'created_at')
+            .select('id', 'project_id', 'name', 'short', 'code', 'color')
             .from('professors')
-            .where({ user_id })
+            .where({ project_id, user_id })
             .orderBy('name', 'asc')
 
         return res.json(professors)
     },
 
-    // Show
-    async show(req, res) {
-        const { id } = req.params
-        const { id: user_id } = req.user
-
-        const professor = await knex
-            .select('id', 'name')
-            .from('professors')
-            .where({ id, user_id })
-            .first()
-
-        return res.json(professor)
-    },
-
     // Create
     async create(req, res) {
         try {
-            const { name } = req.body
+            const { name, short, code, color } = req.body
+            const { project_id } = req.params
             const { id: user_id } = req.user
 
             const [id] = await knex('professors').insert({
+                project_id,
                 name,
+                short,
+                code,
+                color,
                 user_id
             })
 
@@ -55,14 +48,14 @@ module.exports = {
 
     // Update
     async update(req, res) {
-        const { name } = req.body
-        const { id } = req.params
+        const { name, short, code, color } = req.body
+        const { id, project_id } = req.params
         const { id: user_id } = req.user
 
         try {
             const result = await knex('professors')
-                .update({ name })
-                .where({ id, user_id })
+                .update({ name, short, code, color })
+                .where({ id, project_id, user_id })
 
             if (result)
                 return res.status(200).send({
@@ -84,11 +77,13 @@ module.exports = {
 
     // Delete
     async delete(req, res) {
-        const { id } = req.params
+        const { id, project_id } = req.params
         const { id: user_id } = req.user
 
         try {
-            const result = await knex('professors').where({ id, user_id }).del()
+            const result = await knex('professors')
+                .where({ id, project_id, user_id })
+                .del()
 
             if (result)
                 return res.status(200).send({

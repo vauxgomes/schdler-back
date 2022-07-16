@@ -2,7 +2,7 @@
 const express = require('express')
 const routes = express.Router()
 
-// Middlewares
+// Middleware
 const auth = require('./middleware/auth')
 const delay = require('./middleware/delay')
 
@@ -14,6 +14,7 @@ const RelatedProjectController = require('./controllers/RelatedProjectController
 const ProfessorController = require('./controllers/ProfessorController')
 const ModuleController = require('./controllers/ModuleController')
 const LocationController = require('./controllers/LocationController')
+const TimetableController = require('./controllers/TimetableController')
 const BlockController = require('./controllers/BlockController')
 const BoardController = require('./controllers/BoardController')
 const SlotController = require('./controllers/SlotController')
@@ -30,35 +31,72 @@ routes.delete('/users/', auth, UserController.delete)
 
 // Projects
 routes.get('/projects', auth, ProjectController.index)
-routes.get('/projects/:id', auth, ProjectController.show)
 routes.post('/projects', auth, ProjectController.create)
 routes.put('/projects/:id', auth, ProjectController.update)
 routes.delete('/projects/:id', auth, ProjectController.delete)
 
 // Professor
-routes.get('/professors', auth, ProfessorController.index)
-routes.get('/professors/:id', auth, ProfessorController.show)
-routes.post('/professors', auth, ProfessorController.create)
-routes.put('/professors/:id', auth, ProfessorController.update)
-routes.delete('/professors/:id', auth, ProfessorController.delete)
+routes.get('/projects/:project_id/professors', auth, ProfessorController.index)
+routes.post(
+    '/projects/:project_id/professors',
+    auth,
+    ProfessorController.create
+)
+routes.put(
+    '/projects/:project_id/professors/:id',
+    auth,
+    ProfessorController.update
+)
+routes.delete(
+    '/projects/:project_id/professors/:id',
+    auth,
+    ProfessorController.delete
+)
 
 // Module
-routes.get('/modules', auth, ModuleController.index)
-routes.get('/modules/:id', auth, ModuleController.show)
-routes.post('/modules', auth, ModuleController.create)
-routes.put('/modules/:id', auth, ModuleController.update)
-routes.delete('/modules/:id', auth, ModuleController.delete)
+routes.get('/projects/:project_id/modules', auth, ModuleController.index)
+routes.post('/projects/:project_id/modules', auth, ModuleController.create)
+routes.put('/projects/:project_id/modules/:id', auth, ModuleController.update)
+routes.delete(
+    '/projects/:project_id/modules/:id',
+    auth,
+    ModuleController.delete
+)
 
 // Locations
-routes.get('/locations', auth, LocationController.index)
-routes.get('/locations/:id', auth, LocationController.show)
-routes.post('/locations', auth, LocationController.create)
-routes.put('/locations/:id', auth, LocationController.update)
-routes.delete('/locations/:id', auth, LocationController.delete)
+routes.get('/projects/:project_id/locations', auth, LocationController.index)
+routes.post('/projects/:project_id/locations', auth, LocationController.create)
+routes.put(
+    '/projects/:project_id/locations/:id',
+    auth,
+    LocationController.update
+)
+routes.delete(
+    '/projects/:project_id/locations/:id',
+    auth,
+    LocationController.delete
+)
+
+// Timetables
+routes.get('/projects/:project_id/timetables', auth, TimetableController.index)
+routes.post(
+    '/projects/:project_id/timetables',
+    auth,
+    TimetableController.create
+)
+routes.put(
+    '/projects/:project_id/timetables/:id',
+    auth,
+    TimetableController.update
+)
+routes.delete(
+    '/projects/:project_id/timetables/:id',
+    auth,
+    TimetableController.delete
+)
 
 // Block
 routes.get('/projects/:project_id/blocks', auth, BlockController.index)
-routes.get('/projects/:project_id/blocks/:id', auth, BlockController.show)
 routes.post('/projects/:project_id/blocks', auth, BlockController.create)
 routes.delete('/projects/:project_id/blocks/:id', auth, BlockController.delete)
 
@@ -69,10 +107,9 @@ routes.put('/projects/:project_id/boards/:id', auth, BoardController.update)
 routes.delete('/projects/:project_id/boards/:id', auth, BoardController.delete)
 
 // Slot
-routes.get('/boards/:board_id/slots', auth, SlotController.index)
-routes.post('/boards/:board_id/slots', auth, SlotController.create)
-routes.put('/boards/:board_id/slots/:id', auth, SlotController.update)
-routes.delete('/boards/:board_id/slots/:id', auth, SlotController.delete)
+routes.post('/projects/:project_id/slots', auth, SlotController.create)
+routes.put('/projects/:project_id/slots/:id', auth, SlotController.update)
+routes.delete('/projects/:project_id/slots/:id', auth, SlotController.delete)
 
 // Related Projects
 routes.get(

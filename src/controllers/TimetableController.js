@@ -7,71 +7,69 @@ module.exports = {
         const { id: user_id } = req.user
         const { project_id } = req.params
 
-        const modules = await knex
-            .select('id', 'project_id', 'name', 'short', 'code', 'credits')
-            .from('modules')
+        const timetables = await knex
+            .select('id', 'project_id', 'start', 'end', 'shift')
+            .from('timetables')
             .where({ project_id, user_id })
-            .orderBy('name', 'asc')
-            .orderBy('short', 'asc')
+            .orderBy('start', 'asc')
+            .orderBy('end', 'asc')
 
-        return res.json(modules)
+        return res.json(timetables)
     },
 
     // Create
     async create(req, res) {
         try {
-            const { name, short, code, credits } = req.body
+            const { start, end, shift } = req.body
             const { project_id } = req.params
             const { id: user_id } = req.user
 
-            const [id] = await knex('modules').insert({
+            const [id] = await knex('timetables').insert({
                 project_id,
-                name,
-                short,
-                code,
-                credits,
+                start,
+                end,
+                shift,
                 user_id
             })
 
             return res.json({
                 success: true,
-                message: 'module.create.ok',
+                message: 'timetable.create.ok',
                 data: { id }
             })
         } catch (err) {
-            console.log(err)
             return res.status(404).json({
                 success: false,
-                message: 'module.create.nok'
+                message: 'timetable.create.nok'
             })
         }
     },
 
     // Update
     async update(req, res) {
-        const { name, short, code, credits } = req.body
+        const { start, end, shift } = req.body
         const { id, project_id } = req.params
         const { id: user_id } = req.user
 
         try {
-            const result = await knex('modules')
-                .update({ name, short, code, credits })
+            const result = await knex('timetables')
+                .update({ start, end, shift })
                 .where({ id, project_id, user_id })
 
             if (result)
                 return res.status(200).send({
                     success: true,
-                    msg: 'module.update.ok'
+                    msg: 'timetable.update.ok'
                 })
             else
                 return res.status(404).send({
                     success: false,
-                    msg: 'module.update.nok'
+                    msg: 'timetable.update.nok'
                 })
         } catch (err) {
             return res.status(404).send({
                 success: false,
-                msg: 'module.update.err'
+                msg: 'timetable.update.err'
             })
         }
     },
@@ -82,24 +80,24 @@ module.exports = {
         const { id: user_id } = req.user
 
         try {
-            const result = await knex('modules')
+            const result = await knex('timetables')
                 .where({ id, project_id, user_id })
                 .del()
 
             if (result)
                 return res.status(200).send({
                     success: true,
-                    msg: 'module.delete.ok'
+                    msg: 'timetable.delete.ok'
                 })
             else
                 return res.status(404).send({
                     success: false,
-                    msg: 'module.delete.nok'
+                    msg: 'timetable.delete.nok'
                 })
         } catch (err) {
             return res.status(404).send({
                 success: false,
-                msg: 'module.delete.err'
+                msg: 'timetable.delete.err'
             })
         }
     }

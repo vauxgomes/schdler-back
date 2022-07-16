@@ -5,35 +5,40 @@ module.exports = {
     // Index
     async index(req, res) {
         const { id: user_id } = req.user
+        const { project_id } = req.params
+
         const locations = await knex
-            .select('id', 'name')
+            .select(
+                'id',
+                'project_id',
+                'name',
+                'short',
+                'code',
+                'color',
+                'capacity'
+            )
             .from('locations')
-            .where({ user_id })
+            .where({ project_id, user_id })
 
         return res.json(locations)
-    },
-
-    // Show
-    async show(req, res) {
-        const { id } = req.params
-        const { id: user_id } = req.user
-
-        const location = await knex
-            .select('id', 'name')
-            .from('locations')
-            .where({ id, user_id })
-            .first()
-
-        return res.json(location)
     },
 
     // Create
     async create(req, res) {
         try {
-            const { name } = req.body
+            const { name, short, code, color, capacity } = req.body
+            const { project_id } = req.params
             const { id: user_id } = req.user
 
-            const [id] = await knex('locations').insert({ name, user_id })
+            const [id] = await knex('locations').insert({
+                project_id,
+                name,
+                short,
+                code,
+                color,
+                capacity,
+                user_id
+            })
 
             return res.json({
                 success: true,
@@ -50,14 +55,14 @@ module.exports = {
 
     // Update
     async update(req, res) {
-        const { name } = req.body
-        const { id } = req.params
+        const { name, short, code, color, capacity } = req.body
+        const { id, project_id } = req.params
         const { id: user_id } = req.user
 
         try {
             const result = await knex('locations')
-                .update({ name })
-                .where({ id, user_id })
+                .update({ name, short, code, color, capacity })
+                .where({ id, project_id, user_id })
 
             if (result)
                 return res.status(200).send({
@@ -79,11 +84,13 @@ module.exports = {
 
     // Delete
     async delete(req, res) {
-        const { id } = req.params
+        const { id, project_id } = req.params
         const { id: user_id } = req.user
 
         try {
-            const result = await knex('locations').where({ id, user_id }).del()
+            const result = await knex('locations')
+                .where({ id, project_id, user_id })
+                .del()
 
             if (result)
                 return res.status(200).send({

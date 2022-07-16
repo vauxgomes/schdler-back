@@ -4,6 +4,12 @@ exports.up = function (knex) {
     return knex.schema.createTable('slots', (table) => {
         table.increments('id').primary()
 
+        table
+            .integer('project_id')
+            .notNullable()
+            .references('projects.id')
+            .onDelete('CASCADE')
+
         table.integer('index').notNullable()
         table
             .integer('board_id')
@@ -15,6 +21,7 @@ exports.up = function (knex) {
             .notNullable()
             .references('blocks.id')
             .onDelete('CASCADE')
+
         table
             .integer('user_id')
             .notNullable()

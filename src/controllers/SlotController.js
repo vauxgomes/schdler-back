@@ -32,13 +32,15 @@ module.exports = {
     // Create
     async create(req, res) {
         try {
-            const { index, block_id, board_id } = req.body
+            const { project_id } = req.params
+            const { index, board_id, block_id } = req.body
             const { id: user_id } = req.user
 
             const [id] = await knex('slots').insert({
+                project_id,
                 index,
-                block_id,
                 board_id,
+                block_id,
                 user_id
             })
 
@@ -58,14 +60,14 @@ module.exports = {
 
     // Update
     async update(req, res) {
-        const { location_id } = req.body
-        const { board_id, id } = req.params
+        const { index, board_id } = req.body
+        const { project_id, id } = req.params
         const { id: user_id } = req.user
 
         try {
             const result = await knex('slots')
-                .update({ location_id })
-                .where({ board_id, id, user_id })
+                .update({ index, board_id })
+                .where({ id, project_id, board_id, user_id })
 
             if (result)
                 return res.status(200).send({
@@ -87,12 +89,12 @@ module.exports = {
 
     // Delete
     async delete(req, res) {
-        const { board_id, id } = req.params
+        const { project_id, id } = req.params
         const { id: user_id } = req.user
 
         try {
             const result = await knex('slots')
-                .where({ board_id, id, user_id })
+                .where({ id, project_id, user_id })
                 .del()
 
             if (result)
