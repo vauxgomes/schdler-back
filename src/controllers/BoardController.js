@@ -6,12 +6,36 @@ module.exports = {
     async index(req, res) {
         const { project_id } = req.params
         const { id: user_id } = req.user
-        const boards = await knex
-            .select('id', 'name', 'shift')
-            .from('boards')
-            .where({ project_id, user_id })
 
-        return res.json(boards)
+        const timetables = await knex
+            .select('start', 'end', 'shift', 'start', 'end')
+            .from('timetables')
+
+        const boards = await knex
+            .select(
+                'boards.id',
+                'name',
+                'boards.shift',
+                knex.raw('GROUP_CONCAT(timetables.start) as starts'),
+                knex.raw('GROUP_CONCAT(timetables.end) as ends')
+            )
+            .from('boards')
+            .innerJoin('timetables', 'timetables.shift', 'boards.shift')
+            .where({
+                'boards.project_id': project_id,
+                'boards.user_id': user_id
+            })
+            .groupBy('boards.id')
+            .then((boards) => {
+                boards.forEach((b) => {
+                    if (b.starts) b.starts = b.starts.split(',')
+                    if (b.ends) b.ends = b.ends.split(',')
+                })
+
+                return res.json(boards)
+            })
+
+        // .then((t) => (timetables[t.shift] = { start, end } = t))
     },
 
     // Create
